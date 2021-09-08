@@ -231,10 +231,10 @@ module Bullet
               if owner.class.name !~ /^HABTM_/ && !@inversed
                 if is_a? ::ActiveRecord::Associations::ThroughAssociation
                   Bullet::Detector::NPlusOneQuery.call_association(owner, reflection.through_reflection.name)
-                  association = owner.association(reflection.through_reflection.name)
-                  Array(association.target).each do |through_record|
-                    Bullet::Detector::NPlusOneQuery.call_association(through_record, source_reflection.name)
-                  end
+ #                 association = owner.association(reflection.through_reflection.name)
+ #                 Array(association.target).each do |through_record|
+ #                   Bullet::Detector::NPlusOneQuery.call_association(through_record, source_reflection.name)
+ #                 end
 
                   if reflection.through_reflection != through_reflection
                     Bullet::Detector::NPlusOneQuery.call_association(owner, through_reflection.name)
